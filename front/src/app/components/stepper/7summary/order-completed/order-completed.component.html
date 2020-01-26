@@ -1,0 +1,41 @@
+<h1>Kalkulacja wykonana</h1>
+
+<mat-list *ngIf="this.screenWidth > 800">
+  <mat-list-item>
+    Dokonana konfiguracja karnisza jest tylko ustaleniem składników zamówienia. Aby kupić skonfigurowany
+    karnisz należy dokonać teraz transakcji na Allegro.
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>
+    Końcowa cena karnisza to : <b style="font-size: 1.8em; margin-left: 10px; margin-right: 10px;"> {{totalPrice}} </b>PLN.
+  </mat-list-item>
+  <mat-list-item>
+    Należy dokonać zakupu <b style="font-size: 1.8em; margin-left: 10px; margin-right: 10px;"> {{itemsToBuy}} </b>sztuk
+    produktu na akucji.
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>
+    <a [href]=allegroUrl>
+      <button mat-raised-button color="primary">Przejdź do aukcji</button>
+    </a>
+  </mat-list-item>
+</mat-list>
+<div *ngIf="this.screenWidth <= 800">
+  <p>
+    Dokonana konfiguracja karnisza jest tylko ustaleniem składników zamówienia. Aby kupić skonfigurowany
+    karnisz należy dokonać teraz transakcji na Allegro.
+  </p>
+  <mat-divider></mat-divider>
+  <p>
+    Końcowa cena karnisza to : <b style="font-size: 1.5em;"> {{totalPrice}} </b>PLN.
+  </p>
+  <p>
+    Należy dokonać zakupu <b style="font-size: 1.5em;"> {{itemsToBuy}} </b>sztuk
+    produktu na akucji.
+  </p>
+  <mat-list-item>
+    <a [href]=allegroUrl>
+      <button mat-raised-button color="primary">Przejdź do aukcji</button>
+    </a>
+  </mat-list-item>
+</div>

@@ -1,0 +1,44 @@
+package com.betsoft.kalkulator.business.steps.definitions.support_def;
+
+import com.betsoft.kalkulator.business.steps.definitions.color_def.ColorDef;
+import com.betsoft.kalkulator.business.steps.definitions.product_group_def.ProductGroupDef;
+import com.betsoft.kalkulator.business.steps.definitions.color_def.ColorDefRepository;
+import com.betsoft.kalkulator.business.steps.definitions.product_group_def.ProductGroupDef;
+import com.betsoft.kalkulator.business.steps.definitions.product_group_def.ProductGroupDefRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
+import java.util.Set;
+
+@RestController
+@RequestMapping(path = "/supportDefs")
+public class SupportDefRestController {
+
+    private ColorDefRepository colorDefRepository;
+    private ProductGroupDefRepository productGroupDefRepository;
+    private SupportDefRepository supportDefRepository;
+
+    public SupportDefRestController(ColorDefRepository colorDefRepository, ProductGroupDefRepository productGroupDefRepository, SupportDefRepository supportDefRepository) {
+        this.colorDefRepository = colorDefRepository;
+        this.productGroupDefRepository = productGroupDefRepository;
+        this.supportDefRepository = supportDefRepository;
+    }
+
+    @GetMapping
+    @RequestMapping(path = "/byProductGroupIdAndColorId")
+    public ResponseEntity getbyProductGroupIdAndColorId(@RequestParam("productgroupid") Long productGroupId,@RequestParam("colorid") Long colorId) {
+        Optional<ProductGroupDef> productGroup = productGroupDefRepository.findById(productGroupId);
+        Optional<ColorDef> color = colorDefRepository.findById(colorId);
+        if (productGroup.isPresent() && color.isPresent()){
+            Optional<Set<SupportDef>> byProductGroupDefsAndColorDefs = supportDefRepository.findByProductGroupDefAndColorDef(productGroup.get(), color.get());
+            if (byProductGroupDefsAndColorDefs.isPresent()){
+                return ResponseEntity.ok(byProductGroupDefsAndColorDefs.get());
+            }
+        }
+        return ResponseEntity.noContent().build();
+    }
+}

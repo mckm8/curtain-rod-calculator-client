@@ -1,0 +1,136 @@
+<mat-card *ngIf="this.screenWidth>800">
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="wiersz">
+    <div fxFlex="20">
+      Kolor:
+    </div>
+    <div fxFlex="80">
+      <b>{{color?.name}}</b>
+    </div>
+  </div>
+  <mat-divider class="wiersz"></mat-divider>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="wiersz">
+    <div fxFlex="20">
+      Grupa produktów:
+    </div>
+    <div fxFlex="80">
+      <b>{{productGroup?.name}}</b>
+    </div>
+  </div>
+  <mat-divider class="wiersz"></mat-divider>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="wiersz">
+    <div fxFlex="20">
+      Długość drążka:
+    </div>
+    <div fxFlex="80">
+      <b>{{rodLength?.length}}</b>
+    </div>
+    <!--<div fxFlex="20" fxLayoutAlign="end center">-->
+      <!--{{rodLength?.price}} zł/szt-->
+    <!--</div>-->
+  </div>
+  <mat-divider class="wiersz"></mat-divider>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="wiersz">
+    <div fxFlex="20">
+      Ilość drążków:
+    </div>
+    <div fxFlex="80">
+      <b>{{order?.rodCount == 1? 'Pojedynczy' : 'Podwójny'}}</b>
+    </div>
+    <!--<div fxFlex="20" fxLayoutAlign="end center">-->
+      <!--{{rodLength?.price}}x{{order?.rodCount}}={{rodLength?.price * order?.rodCount}} zł-->
+    <!--</div>-->
+  </div>
+  <mat-divider class="wiersz"></mat-divider>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="wiersz">
+    <div fxFlex="20">
+      Wsporniki:
+    </div>
+    <div fxFlex="80">
+      <b>{{support?.name}}</b>
+    </div>
+    <!--<div fxFlex="20">-->
+      <!--Ilość:-->
+    <!--</div>-->
+    <!--<div fxFlex="20">-->
+      <!--<b>{{order?.supportCount}}</b>-->
+    <!--</div>-->
+    <!--<div fxFlex="20" fxLayoutAlign="end center">-->
+      <!--{{support?.price}}x{{order?.supportCount}}={{support?.price * order?.supportCount}} zł-->
+    <!--</div>-->
+  </div>
+  <mat-divider class="wiersz"></mat-divider>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="wiersz">
+    <div fxFlex="20">
+      Zakończenia:
+    </div>
+    <div fxFlex="80">
+      <b>{{ending?.name}}</b>
+    </div>
+    <!--<div fxFlex="20">-->
+      <!--Ilość:-->
+    <!--</div>-->
+    <!--<div fxFlex="20">-->
+      <!--<b>{{order?.endingCount}}</b>-->
+    <!--</div>-->
+    <!--<div fxFlex="20" fxLayoutAlign="end center">-->
+      <!--{{ending?.price}}x{{order?.endingCount}}={{ending?.price * order?.endingCount}} zł-->
+    <!--</div>-->
+  </div>
+  <mat-divider class="wiersz"></mat-divider>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="wiersz" *ngIf="ending2">
+    <div fxFlex="20">
+      Zakończenia dla drugiego drążka:
+    </div>
+    <div fxFlex="80">
+      <b>{{ending2?.name}}</b>
+    </div>
+    <!--<div fxFlex="20">-->
+    <!--Ilość:-->
+    <!--</div>-->
+    <!--<div fxFlex="20">-->
+    <!--<b>{{order?.endingCount}}</b>-->
+    <!--</div>-->
+    <!--<div fxFlex="20" fxLayoutAlign="end center">-->
+    <!--{{ending?.price}}x{{order?.endingCount}}={{ending?.price * order?.endingCount}} zł-->
+    <!--</div>-->
+  </div>
+  <mat-divider class="wiersz" *ngIf="ending2"></mat-divider>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="wiersz">
+    <div fxFlex="20">
+      Kółka:
+    </div>
+    <div fxFlex="80">
+      <b>{{circle?.name}}</b>
+    </div>
+    <!--<div fxFlex="20">-->
+      <!--&lt;!&ndash;Ilość:&ndash;&gt;-->
+    <!--</div>-->
+    <!--<div fxFlex="20">-->
+      <!--&lt;!&ndash;<b>{{order?.circleCount}}</b>&ndash;&gt;-->
+    <!--</div>-->
+    <!--<div fxFlex="20" fxLayoutAlign="end center">-->
+      <!--{{circle?.price}} zł-->
+      <!--&lt;!&ndash;x{{order?.circleCount}}={{circle?.price * order?.circleCount}}&ndash;&gt;-->
+    <!--</div>-->
+  </div>
+  <mat-divider class="wiersz"></mat-divider>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="wiersz">
+    <div fxFlex="20">
+      Suma:
+    </div>
+    <div fxFlex="80">
+      {{
+      (rodLength?.price * order?.rodCount) +
+      (support?.price * order?.supportCount) +
+      (ending?.price * order?.endingCount) +
+      (ending2?.price * order?.endingCount) +
+      (circle?.price)
+      }} zł
+<!--      {{getPrice()}} zl-->
+
+    </div>
+  </div>
+</mat-card>

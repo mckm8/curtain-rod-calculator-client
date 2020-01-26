@@ -1,0 +1,77 @@
+<!--<mat-card >-->
+<!--<mat-card-header>Produkt</mat-card-header>-->
+<!--<mat-card-content>-->
+<div fxLayout="column" fxLayoutAlign="center center">
+  <img src="assets/logo-small2.png" style="margin-top: 20px;">
+</div>
+<mat-nav-list>
+  <h3 mat-subheader>Twój karnisz:</h3>
+  <mat-list-item (click)="openImage(getImgUrl(stepperComunicationService.order?.productGroup?.url))">
+    <img *ngIf="stepperComunicationService.order?.productGroup?.url"
+         [src]="stepperComunicationService.getImgUrl(stepperComunicationService.order?.productGroup?.url)"
+         height="60">
+    <h4 mat-line>Grupa produktów:</h4>
+    <h2 mat-line>{{stepperComunicationService.order?.productGroup?.name}}</h2>
+  </mat-list-item>
+  <mat-list-item (click)="openImage(getImgUrl(stepperComunicationService.order?.color?.imageUrl))">
+    <img *ngIf="stepperComunicationService.order?.color?.name"
+         [src]=stepperComunicationService.getImgUrl(stepperComunicationService.order?.color?.imageUrl)
+         height="60">
+    <h4 mat-line>Kolor:</h4>
+    <h2 mat-line>{{stepperComunicationService.order?.color?.name}}</h2>
+  </mat-list-item>
+  <mat-list-item>
+    <h4 mat-line>Długość: {{stepperComunicationService?.order?.length?.length}} cm</h4>
+    <h4 mat-line *ngIf="stepperComunicationService.order.rodCount">Ilość drążków: {{stepperComunicationService.order.rodCount == 1? 'Pojedynczy' : 'Podwójny'}}</h4>
+  </mat-list-item>
+  <mat-list-item (click)="openImage(getImgUrl(stepperComunicationService.order?.supportType?.imageUrl))">
+    <img *ngIf="stepperComunicationService.order?.supportType?.name"
+         [src]=stepperComunicationService.getImgUrl(stepperComunicationService.order?.supportType?.imageUrl)
+         height="60">
+    <h4 mat-line>Wsporniki:</h4>
+    <h2 mat-line>{{stepperComunicationService.order?.supportType?.name}}</h2>
+    <!--<h2 mat-line>{{stepperComunicationService.order?.supportCount}} szt.</h2>-->
+  </mat-list-item>
+  <mat-list-item (click)="openImage(getImgUrl(stepperComunicationService.order?.endingType?.imageUrl))">
+    <img *ngIf="stepperComunicationService.order?.endingType?.name"
+         [src]=stepperComunicationService.getImgUrl(stepperComunicationService.order?.endingType?.imageUrl)
+         height="60">
+    <h4 mat-line>Zakończenia:</h4>
+    <h2 mat-line>{{stepperComunicationService.order?.endingType?.name}}</h2>
+    <h2 mat-line *ngIf="stepperComunicationService.order?.ending2Type?.name">{{stepperComunicationService.order?.ending2Type?.name}}</h2>
+    <!--<h2 mat-line>{{stepperComunicationService.order?.endingCount}} szt.</h2>-->
+  </mat-list-item>
+  <mat-list-item (click)="openImage(getImgUrl(stepperComunicationService.order?.circleType?.imageUrl))">
+    <img *ngIf="stepperComunicationService.order?.circleType?.name"
+         [src]=stepperComunicationService.getImgUrl(stepperComunicationService.order?.circleType?.imageUrl)
+         height="60">
+    <h4 mat-line>Kółka:</h4>
+    <h2 mat-line>{{stepperComunicationService.order?.circleType?.name}}</h2>
+    <!--<h2 mat-line>{{stepperComunicationService.order?.circleCount}} szt.</h2>-->
+  </mat-list-item>
+  <mat-divider></mat-divider>
+</mat-nav-list>
+
+<mat-list>
+  <mat-list-item *ngIf="!getPrice()">
+    Cena pojawi się po wybraniu długości i ilości drążków
+  </mat-list-item>
+  <mat-list-item *ngIf="getPrice()">
+    Cena: <b style="font-size: 1.8em; margin-left: 2px; margin-right: 2px;"> {{getPrice()}} </b> PLN.
+  </mat-list-item>
+  <mat-divider></mat-divider>
+
+  <mat-list-item *ngIf="getPrice()">
+    Należy dokonać zakupu {{getItemsCount()}} sztuk
+    produktu na akucji.
+  </mat-list-item>
+  <mat-divider></mat-divider>
+</mat-list>
+
+<!--<mat-chip-list>-->
+<!--<mat-chip color="accent" selected>{{getPrice()}}</mat-chip>-->
+<!--</mat-chip-list>-->
+
+<!--</mat-card-content>-->
+
+<!--</mat-card>-->

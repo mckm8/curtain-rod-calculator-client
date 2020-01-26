@@ -1,0 +1,64 @@
+<form [formGroup]="circlesFormGroup">
+  <ng-template matStepLabel>Wybierz kółka</ng-template>
+  <mat-radio-group name="circlesCtrl"
+                   formControlName="circlesCtrl"
+                   (change)="circlesChanged($event)"style="margin-top: 10px;">
+    <div fxLayout="row wrap" fxLayoutWrap fxLayoutAlign="center">
+      <mat-card class="card-picture" *ngFor="let circle of circles">
+        <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+        </mat-card-title>
+        <label>
+          <img mat-card-image [src]="stepperComunicationService.getImgUrl(circle.imageUrl)" style="width: 100%; min-width: 150px;max-width: 300px; margin: 0">
+          <mat-card-content>
+            <mat-radio-button
+              [value]="circle">
+              {{circle.name}}
+            </mat-radio-button>
+          </mat-card-content>
+        </label>
+      </mat-card>
+    </div>
+  </mat-radio-group>
+  <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="margin-top:15px;">
+
+    <!--<div style="padding-top:15px;">-->
+      <!--<button mat-icon-button color="primary" (click)="decrementCount()">-->
+        <!--<mat-icon>remove_circle_outline</mat-icon>-->
+      <!--</button>-->
+    <!--</div>-->
+
+    <!--<mat-form-field>-->
+      <!--<input matInput-->
+             <!--type="number"-->
+             <!--formControlName="circlesCountCtrl"-->
+             <!--placeholder="Ilość sztuk"-->
+             <!--(ngModelChange)="circlesCountChanged($event)">-->
+    <!--</mat-form-field>-->
+
+    <!--<div style="padding-top:15px;">-->
+      <!--<button mat-icon-button color="primary" (click)="incrementCount()">-->
+        <!--<mat-icon>add_circle_outline</mat-icon>-->
+      <!--</button>-->
+    <!--</div>-->
+
+  </div>
+  <!--<div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">-->
+  <!--<mat-slider-->
+  <!--formControlName="circlesCountSliderCtrl"-->
+  <!--[max]="100"-->
+  <!--[min]="0"-->
+  <!--[step]="1"-->
+  <!--[thumbLabel]="true"-->
+  <!--style="width: 100%;">-->
+  <!--</mat-slider>-->
+  <!--</div>-->
+  <div fxLayoutAlign="center">
+    <button mat-button matStepperPrevious>Powrót</button>
+    <button mat-raised-button
+            matStepperNext
+            [color]="isSelected?'primary':''"
+            (click)="showErrorIfExists()"
+            style="margin:15px;">Dalej
+    </button>
+  </div>
+</form>

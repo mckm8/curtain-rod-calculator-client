@@ -1,0 +1,75 @@
+<mat-horizontal-stepper [linear]="true"
+                        *ngIf="this.screenWidth>800"
+                        (selectionChange)="onSelectionChange($event)">
+  <mat-step [stepControl]="productGroupStepForm" [completed]="isProductGroupCompleted()" editable="true">
+    <ng-template matStepLabel>Typ</ng-template>
+    <app-product-group-step></app-product-group-step>
+  </mat-step>
+  <mat-step [stepControl]="colorStepForm" [completed]="isProductColorCompleted()" editable="true">
+    <ng-template matStepLabel>Kolor</ng-template>
+    <app-color-step></app-color-step>
+  </mat-step>
+  <mat-step [stepControl]="rodLengthStepForm" [completed]="isProductRodCompleted()">
+    <ng-template matStepLabel>Długość</ng-template>
+    <app-rod-length-step></app-rod-length-step>
+  </mat-step>
+  <mat-step  [stepControl]="supportStepForm" [completed]="isProductSupportCompleted()">
+    <ng-template matStepLabel>Wsporniki</ng-template>
+    <app-support-step></app-support-step>
+  </mat-step>
+  <mat-step [stepControl]="endingStepForm" [completed]="isProductEndingCompleted()">
+    <ng-template matStepLabel>Zakończenia</ng-template>
+    <app-ending-step></app-ending-step>
+  </mat-step>
+  <mat-step [stepControl]="endingStep2Form" [completed]="isProductEnding2Completed()"
+            *ngIf="this.stepperComunicationService.order.rodCount == 2">
+    <ng-template matStepLabel>Zakończenia dla drugiego drążka</ng-template>
+    <app-ending-step2></app-ending-step2>
+  </mat-step>
+  <mat-step [stepControl]="circleStepForm" [completed]="isProductCircleCompleted()">
+    <ng-template matStepLabel>Kółka</ng-template>
+    <app-circle-step></app-circle-step>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Zamówienie</ng-template>
+    <app-summary #SummaryComponent></app-summary>
+  </mat-step>
+</mat-horizontal-stepper>
+
+<mat-vertical-stepper [linear]="true"
+                      *ngIf="this.screenWidth<=800"
+                        (selectionChange)="onSelectionChange($event)">
+  <mat-step [stepControl]="productGroupStepForm" [completed]="isProductGroupCompleted()" editable="false">
+    <ng-template matStepLabel>Typ</ng-template>
+    <app-product-group-step></app-product-group-step>
+  </mat-step>
+  <mat-step [stepControl]="colorStepForm" [completed]="isProductColorCompleted()" editable="false">
+    <ng-template matStepLabel>Kolor</ng-template>
+    <app-color-step></app-color-step>
+  </mat-step>
+  <mat-step [stepControl]="rodLengthStepForm" [completed]="isProductRodCompleted()">
+    <ng-template matStepLabel>Długość</ng-template>
+    <app-rod-length-step></app-rod-length-step>
+  </mat-step>
+  <mat-step  [stepControl]="supportStepForm" [completed]="isProductSupportCompleted()">
+    <ng-template matStepLabel>Wsporniki</ng-template>
+    <app-support-step></app-support-step>
+  </mat-step>
+  <mat-step [stepControl]="endingStepForm" [completed]="isProductEndingCompleted()">
+    <ng-template matStepLabel>Zakończenia</ng-template>
+    <app-ending-step></app-ending-step>
+  </mat-step>
+  <mat-step [stepControl]="endingStep2Form" [completed]="isProductEnding2Completed()"
+            *ngIf="this.stepperComunicationService.order.rodCount == 2">
+    <ng-template matStepLabel>Zakończenia dla drugiego drążka</ng-template>
+    <app-ending-step2></app-ending-step2>
+  </mat-step>
+  <mat-step [stepControl]="circleStepForm" [completed]="isProductCircleCompleted()">
+    <ng-template matStepLabel>Kółka</ng-template>
+    <app-circle-step></app-circle-step>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Zamówienie</ng-template>
+    <app-summary #SummaryComponent></app-summary>
+  </mat-step>
+</mat-vertical-stepper>

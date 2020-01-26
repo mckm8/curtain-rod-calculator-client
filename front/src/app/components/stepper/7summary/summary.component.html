@@ -1,0 +1,65 @@
+<app-order-preview #orderPreview></app-order-preview>
+<mat-card>
+  <mat-card-header>Wprowadź dane które pomogą nam skompletować Twoje zamówienie z Allegro</mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="summaryFormGroup" (ngSubmit)="onSubmit($event)">
+      <ng-template matStepLabel>Podaj dane do skompletowania zamówienia</ng-template>
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center" style="margin-top:15px;" >
+        <mat-form-field style="width: 100%;">
+          <input matInput
+                 type="email"
+                 formControlName="emailCtrl"
+                 placeholder="Adres e-mail"
+          >
+          <div *ngIf="f.emailCtrl.invalid && (f.emailCtrl.dirty || f.emailCtrl.touched)"
+               class="alert alert-danger">
+            <mat-error *ngIf="f.emailCtrl.errors.required">Pole jest wymagane</mat-error>
+            <mat-error *ngIf="f.emailCtrl.errors.email">Niepoprawny adres email</mat-error>
+          </div>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <input matInput
+                 type="tel"
+                 formControlName="phoneNumberCtrl"
+                 placeholder="Numer telefonu"
+          >
+          <div *ngIf="f.phoneNumberCtrl.invalid && (f.phoneNumberCtrl.dirty || f.phoneNumberCtrl.touched)"
+               class="alert alert-danger">
+            <mat-error *ngIf="f.phoneNumberCtrl.errors.required">Pole jest wymagane</mat-error>
+          </div>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <input matInput
+                 type="text"
+                 formControlName="allegroNickCtrl"
+                 placeholder="Nazwa użytkownika Allegro"
+          >
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center" style="margin-top:5px;">
+        <mat-form-field style="width: 100%;">
+          <textarea matInput
+                    matTextareaAutosize
+                    matAutosizeMinRows=1
+                    matAutosizeMaxRows=5
+                    type="text"
+                    formControlName="additionalInfoCtrl"
+                    placeholder="Uwagi do kalkulacji"
+
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center" style="margin-top:15px; margin-bottom:15px;" >
+        <mat-checkbox [checked]="rodoConfirmed" (change)="onchange($event)"></mat-checkbox>
+        <div style="color: #000;">Wyrażam zgodę na przetwarzanie moich danych osobowych podanych w powyższym formularzu w celu umożliwienia kontaktu ze mną
+          oraz identyfikacji zamówienia z serwisu aukcyjnego przez Profi Styl. Sp. z o.o.</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" fxLayoutAlign="center" style="margin-top:25px;">
+        <button mat-raised-button type="submit" [disabled]="!summaryFormGroup.valid" color="primary">Potwierdź kalkulację</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+

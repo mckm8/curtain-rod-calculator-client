@@ -1,0 +1,40 @@
+<form [formGroup]="rodLengthsFormGroup">
+  <ng-template matStepLabel>Wybierz długość drążka</ng-template>
+  <div  fxLayout="column" fxLayoutAlign="space-around center">
+    <div fxLayout="column" fxLayoutAlign=" center">
+      <p>Wybierz długość karnisza</p>
+      <mat-form-field>
+        <!--<mat-select (selectionChange)="colorChanged($event)" formControlName="colorsCtrl" required>-->
+        <mat-select (selectionChange)="rodLengthsChanged($event)" formControlName="rodLengthCtrl" required>
+          <mat-option *ngFor="let rodLength of rodLengths" [value]="rodLength">
+            {{rodLength.length}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxLayout="column" fxLayoutAlign=" center">
+      <p>Wybierz ilość drążków</p>
+      <mat-form-field>
+        <mat-select formControlName="rodsCountCtrl"
+                    (selectionChange)="rodCountChanged($event)">
+          <mat-option [value]="1">
+            Pojedyńczy
+          </mat-option>
+          <mat-option [value]="2">
+            Podwójny
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div fxLayoutAlign="center">
+    <button mat-button matStepperPrevious>Powrót</button>
+    <button mat-raised-button
+            matStepperNext
+            [color]="isSelected?'primary':''"
+            (click)="showErrorIfExists()"
+            style="margin:15px;">Dalej
+    </button>
+  </div>
+</form>

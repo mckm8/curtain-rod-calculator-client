@@ -1,0 +1,45 @@
+<div [hidden]="!loading">
+  <div class="preloader">
+    <div class="loader">
+
+    </div>
+    <span class="loaderMessage" fxFlex fxFlexAlign="center">{{loadingMessage}}</span>
+  </div>
+</div>
+<mat-sidenav-container fxFlexFill>
+  <mat-sidenav [@fadeInOut]
+               #sidenav
+               class="mat-elevation-z8"
+               mode="{{screenWidth < 1250 ? '' : 'side'}}"
+               opened="{{screenWidth>=1250}}">
+
+    <app-product-tray></app-product-tray>
+    <!--<div fxLayout="column" fxLayoutGap="5px" style="font-size: 12px; padding: 5px;">-->
+      <!--<span>Wersja:</span>-->
+      <!--<span>Wydanie:</span>-->
+    <!--</div>-->
+  </mat-sidenav>
+  <mat-sidenav-content [@fadeInOut]>
+
+    <mat-toolbar class="mat-elevation-z8">
+      <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.opened ? sidenav.close() : sidenav.open()" >
+          <mat-icon>{{sidenav.opened ? 'more_vert' : 'menu' }}</mat-icon>
+        </button>
+        <span>Kalkulator Karniszowy</span>
+        <p style="font-size: 0.7em" *ngIf="this.screenWidth > 1250"> - wybierz elementy z których ma składać się karnisz,
+        zatwierdź kalkulację, a następnie wróć do aukcji dokończyć transakcję</p>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+
+    <mat-card class="mat-elevation-z8">
+      <app-stepper></app-stepper>
+    </mat-card>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+<!--<div style="position: fixed; left: 0; bottom:0">-->
+<!--<app-product-tray></app-product-tray>-->
+<!--</div>-->

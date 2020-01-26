@@ -1,0 +1,30 @@
+<form [formGroup]="productGroupFormGroup">
+  <mat-radio-group name="productGroupCtrl"
+                   formControlName="productGroupCtrl"
+                   (change)="productGroupChanged($event)"
+                   required style="margin-top: 10px;">
+    <div fxLayout="row wrap" fxLayoutWrap fxLayoutAlign="center">
+      <mat-card class="card-picture" *ngFor="let productGroup of productGroups">
+        <label>
+          <img mat-card-image [src]= "stepperComunicationService.getImgUrl(productGroup.url)" style="width: 100%; min-width: 150px;max-width: 300px; margin: 0">
+          <mat-card-content>
+            <mat-radio-button
+              [value]="productGroup">
+              {{productGroup.name}}
+            </mat-radio-button>
+          </mat-card-content>
+        </label>
+
+      </mat-card>
+    </div>
+  </mat-radio-group>
+
+  <div fxLayoutAlign="center">
+    <button mat-raised-button
+            matStepperNext
+            [color]="isSelected?'primary':''"
+            (click)="showErrorIfExists()"
+            style="margin:15px;">Dalej
+    </button>
+  </div>
+</form>

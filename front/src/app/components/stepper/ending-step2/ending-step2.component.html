@@ -1,0 +1,34 @@
+<form [formGroup]="endings2FormGroup">
+  <ng-template matStepLabel>Wybierz typ zakończeń dla drugiego drążka</ng-template>
+  <mat-radio-group name="endings2Ctrl"
+                   formControlName="endings2Ctrl"
+                   (change)="endingsChanged($event)"style="margin-top: 10px;">
+    <div fxLayout="row wrap" fxLayoutWrap fxLayoutAlign="center">
+      <mat-card class="card-picture" *ngFor="let ending of endings">
+        <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+        </mat-card-title>
+        <label>
+          <img mat-card-image [src]="stepperComunicationService.getImgUrl(ending.imageUrl)" style="width: 100%; min-width: 150px;max-width: 300px; margin: 0">
+          <mat-card-content>
+            <mat-radio-button
+              [value]="ending">
+              {{ending.name}}
+            </mat-radio-button>
+          </mat-card-content>
+        </label>
+      </mat-card>
+    </div>
+  </mat-radio-group>
+  <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="margin-top:15px;">
+  </div>
+
+  <div fxLayoutAlign="center">
+    <button mat-button matStepperPrevious>Powrót</button>
+    <button mat-raised-button
+            matStepperNext
+            [color]="isSelected?'primary':''"
+            (click)="showErrorIfExists()"
+            style="margin:15px;">Dalej
+    </button>
+  </div>
+</form>

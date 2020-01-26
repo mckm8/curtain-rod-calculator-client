@@ -1,1 +1,1 @@
-# curtain-rod-calculator-client
+# kalkulator
